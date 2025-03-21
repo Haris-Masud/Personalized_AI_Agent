@@ -17,8 +17,10 @@ import pyttsx3
 import time
 
 
-# import os
-# os.environ["CHROMADB_SKIP_SQLITE_CHECK"] = "1"
+import pysqlite3
+import sys
+sys.modules["sqlite3"] = pysqlite3
+
 
 
 # Custom CSS for styling

@@ -205,19 +205,35 @@ class VoiceAIAgent:
                         ids=[f"{path}_chunk_{i}"]
                     )
 
+    # def play_eleven_labs_audio(self, in_text):
+    #     client = ElevenLabs(
+    #         api_key=os.getenv("ELEVENLABS_API_KEY"),
+    #     )
+
+    #     audio = client.text_to_speech.convert(
+    #         text=in_text,
+    #         voice_id="cgSgspJ2msm6clMCkdW9",
+    #         model_id="eleven_multilingual_v2",
+    #         output_format="mp3_44100_128",
+    #     )
+    #     # return(audio)
+    #     play(audio)
+                    
     def play_eleven_labs_audio(self, in_text):
         client = ElevenLabs(
             api_key=os.getenv("ELEVENLABS_API_KEY"),
         )
 
-        audio = client.text_to_speech.convert(
-            text=in_text,
-            voice_id="cgSgspJ2msm6clMCkdW9",
-            model_id="eleven_multilingual_v2",
-            output_format="mp3_44100_128",
-        )
-        # return(audio)
-        play(audio)
+        try:
+            audio = client.text_to_speech.convert(
+                text=in_text,
+                voice_id="cgSgspJ2msm6clMCkdW9",
+                model_id="eleven_multilingual_v2",
+                output_format="mp3_44100_128",
+            )
+            play(audio)
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
     def simulate_call(self, history=None):
         if history is None:
@@ -310,7 +326,7 @@ class VoiceAIAgent:
                 print(f"AI: {text}")
                 full_text += text + " "
 
-        # self.play_eleven_labs_audio(full_text)
+        self.play_eleven_labs_audio(full_text)
         self.conversation_history.append(f"AI: {full_text}")
         return full_text
 

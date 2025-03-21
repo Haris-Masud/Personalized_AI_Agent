@@ -16,3 +16,4 @@ webrtcvad
 whisper
 streamlit
 elevenlabs
+pysqlite3

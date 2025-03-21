@@ -17,6 +17,10 @@ import pyttsx3
 import time
 
 
+import pysqlite3
+import sys
+sys.modules["sqlite3"] = pysqlite3
+
 
 
 # Custom CSS for styling

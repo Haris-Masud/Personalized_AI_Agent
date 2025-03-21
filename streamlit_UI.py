@@ -17,8 +17,6 @@ import pyttsx3
 import time
 
 
-import os
-os.environ["CHROMADB_SKIP_SQLITE_CHECK"] = "1"
 
 
 # Custom CSS for styling

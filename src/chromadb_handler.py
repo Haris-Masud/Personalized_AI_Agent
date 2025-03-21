@@ -1,4 +1,8 @@
 # chromadb_handler.py
+
+
+import os
+os.environ["CHROMADB_SKIP_SQLITE_CHECK"] = "1"
 import chromadb
 from chromadb.api.types import Documents, EmbeddingFunction, Embeddings
 from typing import List

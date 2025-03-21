@@ -20,6 +20,68 @@ import time
 def local_css():
     css = """
     <style>
+    /* Set the main background to black */
+    .main {
+        background-color: black;
+        color: white;
+    }
+    
+    /* Also target content area */
+    .stApp {
+        background-color: black;
+    }
+    
+    
+    /* Make sidebar text visible on grey background */
+    [data-testid="stSidebar"] h1, 
+    [data-testid="stSidebar"] h2, 
+    [data-testid="stSidebar"] h3, 
+    [data-testid="stSidebar"] p, 
+    [data-testid="stSidebar"] span, 
+    [data-testid="stSidebar"] div,
+    [data-testid="stSidebar"] label {
+        color: white;
+    }
+    
+    /* Make sure text is visible on black background */
+    h1, h2, h3, p, span, div {
+        color: white;
+    }
+    
+    /* Override the default background color for containers */
+    .css-18e3th9, .css-1d391kg {
+        background-color: black;
+    }
+    
+    /* Adjust header background */
+    .css-14xtw13 e8zbici0 {
+        background-color: black;
+    }
+
+    
+    /* Style for Call AI Assistant button (blue and glowing) */
+    [data-testid="stButton"] [kind="primary"] {
+        background-color: #0066ff;
+        color: white;
+        border-radius: 10px;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 20px;
+        margin: 10px 0px;
+        cursor: pointer;
+        border: none;
+        box-shadow: 0 0 15px #0066ff;
+    }
+    
+    [data-testid="stButton"] [kind="primary"]:hover {
+        background-color: #0055dd;
+        box-shadow: 0 0 25px #0066ff;
+        transform: scale(1.05);
+    }
+
+
+    
     .call-button {
         background-color: #0066ff;
         color: white;
@@ -38,27 +100,6 @@ def local_css():
     .call-button:hover {
         background-color: #0055dd;
         box-shadow: 0 0 25px #0066ff;
-        transform: scale(1.05);
-    }
-    
-    .end-call-button {
-        background-color: #ff3333;
-        color: white;
-        border-radius: 10px;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        font-size: 20px;
-        margin: 10px 0px;
-        cursor: pointer;
-        border: none;
-        transition: all 0.3s;
-        box-shadow: 0 0 15px #ff3333;
-    }
-    
-    .end-call-button:hover {
-        background-color: #dd0000;
-        box-shadow: 0 0 25px #ff3333;
         transform: scale(1.05);
     }
     
@@ -93,6 +134,11 @@ def local_css():
         padding: 10px;
         margin: 5px;
         text-align: left;
+    }
+    
+    /* Style for expanders and other widgets on dark background */
+    .streamlit-expanderHeader {
+        color: white;
     }
     </style>
     """
@@ -166,7 +212,7 @@ class VoiceAIAgent:
 
         audio = client.text_to_speech.convert(
             text=in_text,
-            voice_id="ErXwobaYiN019PkySvjV",
+            voice_id="cgSgspJ2msm6clMCkdW9",
             model_id="eleven_multilingual_v2",
             output_format="mp3_44100_128",
         )
@@ -399,15 +445,15 @@ def main():
         if st.session_state['call_active']:
             # Display the audio animation gif when call is active
             try:
-                st.image("audio_animation.gif", use_container_width=True)
+                st.image("test3.gif", use_container_width=True)
             except:
-                st.warning("audio_animation.gif not found. Please add it to your project directory.")
+                st.warning("test3.gif not found. Please add it to your project directory.")
         else:
             # Display static image when no call is active
             try:
-                st.image("audio_image.png", use_container_width=True)
+                st.image("test3.png", use_container_width=True)
             except:
-                st.warning("audio_image.jpeg not found. Please add it to your project directory.")
+                st.warning("test3.png not found. Please add it to your project directory.")
         
         # Call/End Call button with clearer labels
         if not st.session_state['call_active']:
@@ -416,7 +462,8 @@ def main():
                 st.rerun()
         else:
             if st.button("End AI Call", key="end_btn", use_container_width=True, type="primary"):
-                end_call()
+                with st.spinner("Ending Call..."):
+                    end_call()
                 st.rerun()
         
         # Transcript dropdown with updated header

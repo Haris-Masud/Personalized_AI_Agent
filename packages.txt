@@ -1,4 +1,6 @@
 portaudio19-dev
 python3-all-dev
 sqlite3
+libsqlite3-dev
+
 

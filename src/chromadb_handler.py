@@ -17,8 +17,8 @@ class CustomEmbeddingFunction(EmbeddingFunction):
 
 class ChromaDBHandler:
     def __init__(self):
-        # self.client = chromadb.PersistentClient()
-        self.client = chromadb.PersistentClient(path="chroma_data", settings={"chroma_db_impl": "duckdb"})
+        self.client = chromadb.PersistentClient()
+        # self.client = chromadb.PersistentClient(path="chroma_data", settings={"chroma_db_impl": "duckdb"})
         self.embedding_fn = CustomEmbeddingFunction()
         
         self.collection = self.client.get_or_create_collection(
